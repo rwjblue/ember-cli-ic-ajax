@@ -16,11 +16,11 @@ function unwatchedTree(dir) {
 }
 
 EmberCLIICAjax.prototype.treeFor = function treeFor(name) {
-  var treePath =  path.join('node_modules/ember-cli-ic-ajax', name);
+  if (name !== 'vendor') { return; }
 
-  if (this.app.env !== 'production' && fs.existsSync(treePath)) {
-    return unwatchedTree(treePath);
-  }
+  var treePath =  path.join('node_modules', 'ember-cli-ic-ajax', 'node_modules');
+
+  return unwatchedTree(treePath);
 };
 
 EmberCLIICAjax.prototype.included = function included(app) {
@@ -28,7 +28,7 @@ EmberCLIICAjax.prototype.included = function included(app) {
   var options = this.app.options.icAjaxOptions || {enabled: true};
 
   if (options.enabled) {
-    this.app.import('vendor/ic-ajax/ic-ajax.js', {
+    this.app.import('vendor/ic-ajax/dist/named-amd/main.js', {
                     'ic-ajax': [
                       'default',
                       'defineFixture',

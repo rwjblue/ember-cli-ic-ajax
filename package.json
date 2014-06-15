@@ -10,5 +10,8 @@
     "ember-cli-addon"
   ],
   "author": "Robert Jackson",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "ic-ajax": "~2.0.1"
+  }
 }
