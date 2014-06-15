@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-ic-ajax",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Include ic-ajax into an ember-cli application.",
   "main": "index.js",
   "scripts": {
