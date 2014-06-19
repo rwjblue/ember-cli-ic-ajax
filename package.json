@@ -1,13 +1,13 @@
 {
   "name": "ember-cli-ic-ajax",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Include ic-ajax into an ember-cli application.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "ember-cli-addon"
+    "ember-addon"
   ],
   "author": "Robert Jackson",
   "license": "MIT",
