@@ -29,13 +29,15 @@ EmberCLIICAjax.prototype.included = function included(app) {
 
   if (options.enabled) {
     this.app.import('vendor/ic-ajax/dist/named-amd/main.js', {
-                    'ic-ajax': [
-                      'default',
-                      'defineFixture',
-                      'lookupFixture',
-                      'raw',
-                      'request',
-                    ]
+      exports: {
+        'ic-ajax': [
+          'default',
+          'defineFixture',
+          'lookupFixture',
+          'raw',
+          'request',
+        ]
+      }
     });
   }
 };
