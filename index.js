@@ -1,45 +1,31 @@
 'use strict';
 
-var path = require('path');
-var fs   = require('fs');
+module.exports = {
+  name: 'Ember CLI ic-ajax',
 
-function EmberCLIICAjax(project) {
-  this.project = project;
-  this.name    = 'Ember CLI ic-ajax';
-}
+  treeFor: function(name) {
+    if (name !== 'vendor') { return; }
 
-function unwatchedTree(dir) {
-  return {
-    read:    function() { return dir; },
-    cleanup: function() { }
-  };
-}
+    return this.treeGenerator(path.join(__dirname, 'node_modules'));
+  },
 
-EmberCLIICAjax.prototype.treeFor = function treeFor(name) {
-  if (name !== 'vendor') { return; }
+  included: function(app) {
+    this._super.included(app);
 
-  var treePath =  path.join('node_modules', 'ember-cli-ic-ajax', 'node_modules');
+    var options = this.app.options.icAjaxOptions || {enabled: true};
 
-  return unwatchedTree(treePath);
-};
-
-EmberCLIICAjax.prototype.included = function included(app) {
-  this.app = app;
-  var options = this.app.options.icAjaxOptions || {enabled: true};
-
-  if (options.enabled) {
-    this.app.import('vendor/ic-ajax/dist/named-amd/main.js', {
-      exports: {
-        'ic-ajax': [
-          'default',
-          'defineFixture',
-          'lookupFixture',
-          'raw',
-          'request',
-        ]
-      }
-    });
+    if (options.enabled) {
+      this.app.import('vendor/ic-ajax/dist/named-amd/main.js', {
+        exports: {
+          'ic-ajax': [
+            'default',
+            'defineFixture',
+            'lookupFixture',
+            'raw',
+            'request',
+          ]
+        }
+      });
+    }
   }
 };
-
-module.exports = EmberCLIICAjax;
