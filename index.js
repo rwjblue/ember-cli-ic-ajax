@@ -3,15 +3,11 @@
 module.exports = {
   name: 'Ember CLI ic-ajax',
 
-  treeFor: function(name) {
-    if (name !== 'vendor') { return; }
-
-    return this.treeGenerator(path.join(__dirname, 'node_modules'));
+  init: function(name) {
+    this.treePaths['vendor'] = 'node_modules';
   },
 
   included: function(app) {
-    this._super.included(app);
-
     var options = this.app.options.icAjaxOptions || {enabled: true};
 
     if (options.enabled) {
