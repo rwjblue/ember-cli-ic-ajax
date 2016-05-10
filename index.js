@@ -4,6 +4,7 @@ module.exports = {
   name: 'Ember CLI ic-ajax',
 
   init: function(name) {
+    this._super.init.apply(this, arguments);
     var assets_path = require('path').join('ic-ajax','dist','cjs','main.js');
     this.treePaths['vendor'] = require.resolve('ic-ajax').replace(assets_path, '');
   },
